@@ -109,9 +109,7 @@ export class AppComponent {
       this.selectedTemp = e.target;
     }
 
-    this.calculDegatsCosmiqueFinaux();
-    this.calculDegatsPhysiqueSansCrit();
-    this.calculDegatsPhysiqueAvecCrit();
+    this.refreshData();
   }
 
   saveValue(value, obj, path) {
@@ -130,12 +128,10 @@ export class AppComponent {
         break;
     }
 
-    this.calculDegatsCosmiqueFinaux();
-    this.calculDegatsPhysiqueSansCrit();
-    this.calculDegatsPhysiqueAvecCrit();
+    this.refreshData();
   }
 
-  setValue = (propertyPath, value, obj) => {
+  setValue(propertyPath, value, obj) {
     // this is a super simple parsing, you will want to make this more complex to handle correctly any path
     // it will split by the dots at first and then simply pass along the array (on next iterations)
     const properties = Array.isArray(propertyPath)
@@ -159,10 +155,12 @@ export class AppComponent {
       obj[properties[0]] = value;
       return true; // this is the end
     }
-  };
+  }
 
   setSkillValue(value) {
     this.skill = value;
+
+    this.refreshData();
   }
 
   calculDegatsCosmiqueFinaux() {
@@ -220,5 +218,11 @@ export class AppComponent {
       totalCatk * skill * effetCrit * def_factorP * finalFactor * pResFactor
     );
     console.log(this.degatsFinauxPhysiqueAvecCrit);
+  }
+
+  refreshData() {
+    this.calculDegatsCosmiqueFinaux();
+    this.calculDegatsPhysiqueSansCrit();
+    this.calculDegatsPhysiqueAvecCrit();
   }
 }

@@ -1,0 +1,53 @@
+.substat-value {
+  font-weight: bolder;
+}
+
+.substat-value:hover {
+  cursor: pointer;
+}
+
+.basic-stat {
+  color: #c8e2fa;
+  text-shadow: 2px 0 0 #73818f, -2px 0 0 #73818f, 0 2px 0 #73818f,
+    0 -2px 0 #73818f, 1px 1px #73818f, -1px -1px 0 #73818f, 1px -1px 0 #73818f,
+    -1px 1px 0 #73818f;
+}
+
+.boost-stat {
+  color: #d8c196;
+  text-shadow: 2px 0 0 #8a7c61, -2px 0 0 #8a7c61, 0 2px 0 #8a7c61,
+    0 -2px 0 #8a7c61, 1px 1px #8a7c61, -1px -1px 0 #8a7c61, 1px -1px 0 #8a7c61,
+    -1px 1px 0 #8a7c61;
+}
+.boost-ingame-stat {
+  color: #80c072;
+  text-shadow: 2px 0 0 #43613c, -2px 0 0 #43613c, 0 2px 0 #43613c,
+    0 -2px 0 #43613c, 1px 1px #43613c, -1px -1px 0 #43613c, 1px -1px 0 #43613c,
+    -1px 1px 0 #43613c;
+}
+
+.stat-final {
+  color: #323b5f;
+  font-weight: bolder;
+}
+
+input {
+  width: 70px;
+  background-color: rgba(116, 122, 156, 0.091);
+  outline: none;
+  color: #fff;
+
+  -webkit-appearance: none;
+  border: 0;
+  padding: 0;
+  background: none;
+  border-radius: 0;
+  text-align: center;
+  /* transition: all 0.15s ease; */
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

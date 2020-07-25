@@ -1,0 +1,21 @@
+<input
+  *ngIf="editMode"
+  (focusout)="onFocusOut()"
+  (keydown.enter)="$event.target.blur()"
+  [(ngModel)]="data"
+  appAutofocus
+  type="number"
+  (keydown.enter)="$event.target.blur()"
+  (focusout)="editMode = false"
+  class="stat-input"
+/>
+<span
+  *ngIf="!editMode"
+  (click)="editMode = true"
+  class="substat-value"
+  [ngClass]="textCss[dataType]"
+  >{{ data }}
+</span>
+<span *ngIf="isPercent" class="substat-value" [ngClass]="textCss[dataType]"
+  >%</span
+>

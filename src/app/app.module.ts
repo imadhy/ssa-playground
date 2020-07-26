@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,8 +10,13 @@ import { AutofocusDirective } from './autofocus.directive';
 import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  declarations: [AppComponent, EditInputComponent, AutofocusDirective, FooterComponent],
-  imports: [BrowserModule, AppRoutingModule, FormsModule],
+  declarations: [
+    AppComponent,
+    EditInputComponent,
+    AutofocusDirective,
+    FooterComponent,
+  ],
+  imports: [BrowserModule, AppRoutingModule, FormsModule, YouTubePlayerModule],
   providers: [],
   bootstrap: [AppComponent],
 })

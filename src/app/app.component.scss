@@ -33,8 +33,7 @@
   }
 
   .skill-bloc {
-    width: 300px;
-    height: 10em;
+    height: 3em;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -42,6 +41,7 @@
     h3 {
       color: #68718e;
       font-style: italic;
+      padding-top: 8px;
 
       span {
         text-emphasis: none;
@@ -169,4 +169,38 @@ hr {
 .skill-cosmo-bloc {
   display: flex;
   justify-content: space-around;
+}
+
+.youtube-block {
+  margin-top: 35px;
+}
+
+.cosmo-block {
+  margin-top: 25px;
+  background: #b6c0d9;
+  border-radius: 10px;
+  box-shadow: -1px 1px 5px 1px rgba(0, 0, 0, 0.3) inset;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: auto;
+  scrollbar-width: thin;
+
+  img {
+    flex: 0 0 auto;
+  }
+}
+
+/* Works on Chrome/Edge/Safari */
+.scroll4::-webkit-scrollbar {
+  width: 10px;
+  height: 8px;
+  background: transparent;
+}
+.scroll4::-webkit-scrollbar-track {
+  background: none;
+}
+.scroll4::-webkit-scrollbar-thumb {
+  background-color: #747a9c;
+  border-radius: 20px;
+  border: 1px solid #747a9c;
 }

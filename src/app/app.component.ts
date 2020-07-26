@@ -1,14 +1,16 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component, Renderer2, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Saint Seiya Awakening - Damage Playground';
+  tackerVideo = 'RS53F-EqNx0';
+  youtubeIframe: any;
   selectedTemp;
-  attackerLvl = 80;
+  characterLvl = 80;
   skill = 1;
 
   cosmoStats = {
@@ -94,6 +96,12 @@ export class AppComponent {
 
   constructor(private renderer: Renderer2) {}
 
+  ngOnInit() {
+    const tag = document.createElement('script');
+    tag.src = 'https://www.youtube.com/iframe_api';
+    document.body.appendChild(tag);
+  }
+
   selectCosmo(e, cosmo) {
     console.log('selected : ', e);
     const selected = e.target.classList.contains('img-selected');
@@ -163,16 +171,22 @@ export class AppComponent {
     this.refreshData();
   }
 
+  setCharacterLvlValue(value) {
+    this.characterLvl = value;
+
+    this.refreshData();
+  }
+
   calculDegatsCosmiqueFinaux() {
     const totalCatk = this.basicAttr.atq_c.total();
     const skill = this.skill / 100;
     const totalCdmg = 1 + this.combatAttr.deg_c.total() / 100;
     const def_factorC =
-      (400 + this.attackerLvl * 10) /
+      (400 + this.characterLvl * 10) /
       (this.basicAttrOpponent.def_c.total() -
         this.combatAttr.penetration_c +
         400 +
-        this.attackerLvl * 10);
+        this.characterLvl * 10);
     const finalFactor = 1 + this.selectedCosmo;
     const cResFactor = 1 / (1 + this.combatAttrOpponent.rest_deg_c / 100);
 
@@ -187,11 +201,11 @@ export class AppComponent {
     const skill = this.skill / 100;
     const totalCdmg = 1 + this.combatAttr.deg_c.total() / 100;
     const def_factorP =
-      (400 + this.attackerLvl * 10) /
+      (400 + this.characterLvl * 10) /
       (this.basicAttrOpponent.def_p.total() -
         this.combatAttr.penetration_p +
         400 +
-        this.attackerLvl * 10);
+        this.characterLvl * 10);
     const finalFactor = 1 + this.selectedCosmo;
     const pResFactor = 1 / (1 + this.combatAttrOpponent.res_deg_p / 100);
 
@@ -206,11 +220,11 @@ export class AppComponent {
     const skill = this.skill / 100;
     const effetCrit = 1 + this.combatAttr.effet_crit.total() / 100;
     const def_factorP =
-      (400 + this.attackerLvl * 10) /
+      (400 + this.characterLvl * 10) /
       (this.basicAttrOpponent.def_p.total() -
         this.combatAttr.penetration_p +
         400 +
-        this.attackerLvl * 10);
+        this.characterLvl * 10);
     const finalFactor = 1 + this.selectedCosmo;
     const pResFactor = 1 / (1 + this.combatAttrOpponent.res_deg_p / 100);
 

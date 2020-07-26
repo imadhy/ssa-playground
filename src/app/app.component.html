@@ -1,7 +1,15 @@
 <div class="container h-100">
   <h1 class="title">{{ title }}</h1>
   <div class="block-level">
-    <h2>Niveau <span>80</span></h2>
+    <h2>
+      Niveau
+      <app-edit-input
+        [data]="characterLvl"
+        [dataType]="final"
+        [isPercent]="false"
+        (focusOut)="setCharacterLvlValue($event)"
+      ></app-edit-input>
+    </h2>
   </div>
 
   <div class="main">
@@ -228,6 +236,41 @@
           </div>
         </div>
       </div>
+      <div class="block-level">
+        <div class="skill-bloc">
+          <h3>
+            Skill :
+            <app-edit-input
+              [data]="skill"
+              [dataType]="final"
+              [isPercent]="true"
+              (focusOut)="setSkillValue($event)"
+            ></app-edit-input>
+          </h3>
+        </div>
+      </div>
+      <div class="cosmo-block scroll4">
+        <img
+          class="img-cosmo"
+          (click)="selectCosmo($event, 'fellina')"
+          src="assets/img/fellina.png"
+        />
+        <img
+          class="img-cosmo"
+          (click)="selectCosmo($event, 'chaineHephaistos')"
+          src="assets/img/chaine-ephaistos.png"
+        />
+        <img
+          class="img-cosmo"
+          (click)="selectCosmo($event, 'geantRoi')"
+          src="assets/img/gerant_roi.png"
+        />
+        <img
+          class="img-cosmo"
+          (click)="selectCosmo($event, 'serpentDeuxCornes')"
+          src="assets/img/serpant__deux_cornes.png"
+        />
+      </div>
     </div>
 
     <div class="attributs-block">
@@ -272,44 +315,13 @@
           </div>
         </div>
       </div>
-    </div>
-  </div>
-
-  <div class="skill-cosmo-bloc">
-    <div class="block-level">
-      <div class="skill-bloc">
-        <h3>
-          Skill :
-          <app-edit-input
-            [data]="skill"
-            [dataType]="final"
-            [isPercent]="true"
-            (focusOut)="setSkillValue($event)"
-          ></app-edit-input>
-        </h3>
+      <div class="youtube-block">
+        <youtube-player
+          [videoId]="tackerVideo"
+          [width]="470"
+          [height]="355"
+        ></youtube-player>
       </div>
-    </div>
-    <div class="block-level">
-      <img
-        class="img-cosmo"
-        (click)="selectCosmo($event, 'fellina')"
-        src="assets/img/fellina.png"
-      />
-      <img
-        class="img-cosmo"
-        (click)="selectCosmo($event, 'chaineHephaistos')"
-        src="assets/img/chaine-ephaistos.png"
-      />
-      <img
-        class="img-cosmo"
-        (click)="selectCosmo($event, 'geantRoi')"
-        src="assets/img/gerant_roi.png"
-      />
-      <img
-        class="img-cosmo"
-        (click)="selectCosmo($event, 'serpentDeuxCornes')"
-        src="assets/img/serpant__deux_cornes.png"
-      />
     </div>
   </div>
 

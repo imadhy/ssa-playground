@@ -181,7 +181,7 @@ export class AppComponent implements OnInit {
     const totalCatk = this.basicAttr.atq_c.total();
     const skill = this.skill / 100;
     const totalCdmg = 1 + this.combatAttr.deg_c.total() / 100;
-    const def_factorC =
+    const defFactorCosmic =
       (400 + this.characterLvl * 10) /
       (this.basicAttrOpponent.def_c.total() -
         this.combatAttr.penetration_c +
@@ -191,7 +191,7 @@ export class AppComponent implements OnInit {
     const cResFactor = 1 / (1 + this.combatAttrOpponent.rest_deg_c / 100);
 
     this.degatsFinauxCosmic = Math.round(
-      totalCatk * skill * totalCdmg * def_factorC * finalFactor * cResFactor
+      totalCatk * skill * totalCdmg * defFactorCosmic * finalFactor * cResFactor
     );
     console.log(this.degatsFinauxCosmic);
   }
@@ -200,7 +200,7 @@ export class AppComponent implements OnInit {
     const totalCatk = this.basicAttr.atq_p.total();
     const skill = this.skill / 100;
     const totalCdmg = 1 + this.combatAttr.deg_c.total() / 100;
-    const def_factorP =
+    const defFactorPhysique =
       (400 + this.characterLvl * 10) /
       (this.basicAttrOpponent.def_p.total() -
         this.combatAttr.penetration_p +
@@ -210,7 +210,12 @@ export class AppComponent implements OnInit {
     const pResFactor = 1 / (1 + this.combatAttrOpponent.res_deg_p / 100);
 
     this.degatsFinauxPhysiqueSansCrit = Math.round(
-      totalCatk * skill * totalCdmg * def_factorP * finalFactor * pResFactor
+      totalCatk *
+        skill *
+        totalCdmg *
+        defFactorPhysique *
+        finalFactor *
+        pResFactor
     );
     console.log(this.degatsFinauxPhysiqueSansCrit);
   }
@@ -219,7 +224,7 @@ export class AppComponent implements OnInit {
     const totalCatk = this.basicAttr.atq_p.total();
     const skill = this.skill / 100;
     const effetCrit = 1 + this.combatAttr.effet_crit.total() / 100;
-    const def_factorP =
+    const defFactorPhysique =
       (400 + this.characterLvl * 10) /
       (this.basicAttrOpponent.def_p.total() -
         this.combatAttr.penetration_p +
@@ -229,7 +234,12 @@ export class AppComponent implements OnInit {
     const pResFactor = 1 / (1 + this.combatAttrOpponent.res_deg_p / 100);
 
     this.degatsFinauxPhysiqueAvecCrit = Math.round(
-      totalCatk * skill * effetCrit * def_factorP * finalFactor * pResFactor
+      totalCatk *
+        skill *
+        effetCrit *
+        defFactorPhysique *
+        finalFactor *
+        pResFactor
     );
     console.log(this.degatsFinauxPhysiqueAvecCrit);
   }

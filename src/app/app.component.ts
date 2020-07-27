@@ -212,7 +212,7 @@ export class AppComponent implements OnInit {
     this.degatsFinauxPhysiqueSansCrit = Math.round(
       totalCatk *
         skill *
-        totalCdmg *
+        // totalCdmg *
         defFactorPhysique *
         finalFactor *
         pResFactor

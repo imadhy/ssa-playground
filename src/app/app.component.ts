@@ -199,7 +199,6 @@ export class AppComponent implements OnInit {
   calculDegatsPhysiqueSansCrit() {
     const totalCatk = this.basicAttr.atq_p.total();
     const skill = this.skill / 100;
-    const totalCdmg = 1 + this.combatAttr.deg_c.total() / 100;
     const defFactorPhysique =
       (400 + this.characterLvl * 10) /
       (this.basicAttrOpponent.def_p.total() -
@@ -210,12 +209,7 @@ export class AppComponent implements OnInit {
     const pResFactor = 1 / (1 + this.combatAttrOpponent.res_deg_p / 100);
 
     this.degatsFinauxPhysiqueSansCrit = Math.round(
-      totalCatk *
-        skill *
-        // totalCdmg *
-        defFactorPhysique *
-        finalFactor *
-        pResFactor
+      totalCatk * skill * defFactorPhysique * finalFactor * pResFactor
     );
     console.log(this.degatsFinauxPhysiqueSansCrit);
   }

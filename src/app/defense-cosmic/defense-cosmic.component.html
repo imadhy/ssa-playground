@@ -1,0 +1,48 @@
+<div class="attributs-block">
+  <h1 class="att-block-title">Attributs basiques adversaire</h1>
+  <div class="stats-block">
+    <div class="sub-category">
+      <img class="stats-icons" src="assets/img/icons/defc.png" />
+      <span class="stat-title">Def C :</span><br />
+      <div class="substat">
+        <div class="substat-line">
+          <span class="substat-title">Def C base : </span>
+          <app-edit-input
+            [data]="basicAttrOpponent.def_c.base"
+            [dataType]="base"
+            (focusOut)="saveValue($event, 'basicAttrOpponent', 'def_c.base')"
+          ></app-edit-input>
+        </div>
+        <div class="substat-line">
+          <span class="substat-title">Def C boost : </span>
+          <app-edit-input
+            [data]="basicAttrOpponent.def_c.boost"
+            [dataType]="boost"
+            (focusOut)="saveValue($event, 'basicAttrOpponent', 'def_c.boost')"
+          ></app-edit-input>
+        </div>
+        <div class="substat-line">
+          <span class="substat-title">Def C boost ingame : </span>
+          <app-edit-input
+            [data]="basicAttrOpponent.def_c.boost2"
+            [dataType]="boostingame"
+            (focusOut)="saveValue($event, 'basicAttrOpponent', 'def_c.boost2')"
+          ></app-edit-input>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div class="sub-category">
+      <div class="substat-line single-stat">
+        <img class="stats-icons" src="assets/img/icons/resDegC.png" />
+        <span class="stat-title">Res DÉG C :</span>
+        <app-edit-input
+          [data]="combatAttrOpponent.rest_deg_c"
+          [dataType]="base"
+          [isPercent]="true"
+          (focusOut)="saveValue($event, 'combatAttrOpponent', 'rest_deg_c')"
+        ></app-edit-input>
+      </div>
+    </div>
+  </div>
+</div>

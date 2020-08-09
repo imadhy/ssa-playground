@@ -12,230 +12,41 @@
     </h2>
   </div>
 
+  <h2 class="degats-switcher">
+    <span [ngClass]="{ 'switcher-physique': isPhysique }">Physique</span>
+    <app-degats-toggle
+      (changed)="switchDegats($event)"
+      class="degats-toggle"
+    ></app-degats-toggle>
+    <span [ngClass]="{ 'switcher-cosmic': isCosmic }">Cosmic</span>
+  </h2>
+
   <div class="main">
-    <div class="attributs-block">
-      <h1 class="att-block-title">Attributs basiques</h1>
-      <div class="stats-block">
-        <div class="sub-category">
-          <img class="stats-icons" src="assets/img/icons/atqc.png" />
-          <span class="stat-title">ATQ C :</span><br />
-          <div class="substat">
-            <div class="substat-line">
-              <span class="substat-title">Atq C base : </span>
-              <app-edit-input
-                [data]="basicAttr.atq_c.base"
-                [dataType]="base"
-                (focusOut)="saveValue($event, 'basicAttr', 'atq_c.base')"
-              ></app-edit-input>
-            </div>
-            <div class="substat-line">
-              <span class="substat-title">Atq C boost : </span>
-              <app-edit-input
-                [data]="basicAttr.atq_c.boost"
-                [dataType]="boost"
-                (focusOut)="saveValue($event, 'basicAttr', 'atq_c.boost')"
-              ></app-edit-input>
-            </div>
-            <div class="substat-line">
-              <span class="substat-title">Atq C boost ingame : </span>
-              <app-edit-input
-                [data]="basicAttr.atq_c.boost2"
-                [dataType]="boostingame"
-                (focusOut)="saveValue($event, 'basicAttr', 'atq_c.boost2')"
-              ></app-edit-input>
-            </div>
-          </div>
-        </div>
-        <hr />
-        <div class="sub-category">
-          <img class="stats-icons" src="assets/img/icons/atqp.png" />
-          <span class="stat-title">ATQ P :</span><br />
-          <div class="substat">
-            <div class="substat-line">
-              <span class="substat-title">Atq P base : </span>
-              <app-edit-input
-                [data]="basicAttr.atq_p.base"
-                [dataType]="base"
-                (focusOut)="saveValue($event, 'basicAttr', 'atq_p.base')"
-              ></app-edit-input>
-            </div>
-            <div class="substat-line">
-              <span class="substat-title">Atq P boost : </span>
-              <app-edit-input
-                [data]="basicAttr.atq_p.boost"
-                [dataType]="boost"
-                (focusOut)="saveValue($event, 'basicAttr', 'atq_p.boost')"
-              ></app-edit-input>
-            </div>
-            <div class="substat-line">
-              <span class="substat-title">Atq P boost ingame : </span>
-              <app-edit-input
-                [data]="basicAttr.atq_p.boost2"
-                [dataType]="boostingame"
-                (focusOut)="saveValue($event, 'basicAttr', 'atq_p.boost2')"
-              ></app-edit-input>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!-- Degats Physique -->
+    <app-degats-physique
+      *ngIf="isPhysique"
+      (updateDegatsPhysique)="updateDegatsPhysique($event)"
+    ></app-degats-physique>
+
+    <!-- Defense Physique -->
+    <app-defense-physique
+      *ngIf="isPhysique"
+      (updateDefensePhysique)="updateDefensePhysique($event)"
+    ></app-defense-physique>
+
+    <!-- Degats Cosmic -->
+    <app-degats-cosmic
+      *ngIf="isCosmic"
+      (updateDegatsCosmic)="updateDegatsCosmic($event)"
+    ></app-degats-cosmic>
+
+    <!-- Defense Cosmic -->
+    <app-defense-cosmic
+      *ngIf="isCosmic"
+      (updateDefenseCosmic)="updateDefenseCosmic($event)"
+    ></app-defense-cosmic>
 
     <div class="attributs-block">
-      <h1 class="att-block-title">Attributs basiques adversaire</h1>
-      <div class="stats-block">
-        <div class="sub-category">
-          <img class="stats-icons" src="assets/img/icons/defc.png" />
-          <span class="stat-title">Def C :</span><br />
-          <div class="substat">
-            <div class="substat-line">
-              <span class="substat-title">Def C base : </span>
-              <app-edit-input
-                [data]="basicAttrOpponent.def_c.base"
-                [dataType]="base"
-                (focusOut)="
-                  saveValue($event, 'basicAttrOpponent', 'def_c.base')
-                "
-              ></app-edit-input>
-            </div>
-            <div class="substat-line">
-              <span class="substat-title">Def C boost : </span>
-              <app-edit-input
-                [data]="basicAttrOpponent.def_c.boost"
-                [dataType]="boost"
-                (focusOut)="
-                  saveValue($event, 'basicAttrOpponent', 'def_c.boost')
-                "
-              ></app-edit-input>
-            </div>
-            <div class="substat-line">
-              <span class="substat-title">Def C boost ingame : </span>
-              <app-edit-input
-                [data]="basicAttrOpponent.def_c.boost2"
-                [dataType]="boostingame"
-                (focusOut)="
-                  saveValue($event, 'basicAttrOpponent', 'def_c.boost2')
-                "
-              ></app-edit-input>
-            </div>
-          </div>
-        </div>
-        <hr />
-        <div class="sub-category">
-          <img class="stats-icons" src="assets/img/icons/defp.png" />
-          <span class="stat-title">Def P :</span><br />
-          <div class="substat">
-            <div class="substat-line">
-              <span class="substat-title">Def P base : </span>
-              <app-edit-input
-                [data]="basicAttrOpponent.def_p.base"
-                [dataType]="base"
-                (focusOut)="
-                  saveValue($event, 'basicAttrOpponent', 'def_p.base')
-                "
-              ></app-edit-input>
-            </div>
-            <div class="substat-line">
-              <span class="substat-title">Def P boost : </span>
-              <app-edit-input
-                [data]="basicAttrOpponent.def_p.boost"
-                [dataType]="boost"
-                (focusOut)="
-                  saveValue($event, 'basicAttrOpponent', 'def_p.boost')
-                "
-              ></app-edit-input>
-            </div>
-            <div class="substat-line">
-              <span class="substat-title">Def P boost ingame : </span>
-              <app-edit-input
-                [data]="basicAttrOpponent.def_p.boost2"
-                [dataType]="boostingame"
-                (focusOut)="
-                  saveValue($event, 'basicAttrOpponent', 'def_p.boost2')
-                "
-              ></app-edit-input>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="attributs-block">
-      <h1 class="att-block-title">Attributs de combat</h1>
-      <div class="stats-block">
-        <div class="sub-category">
-          <img class="stats-icons" src="assets/img/icons/degc.png" />
-          <span class="stat-title">DÉG C :</span><br />
-          <div class="substat">
-            <div class="substat-line">
-              <span class="substat-title">DÉG C base : </span>
-              <app-edit-input
-                [data]="combatAttr.deg_c.base"
-                [dataType]="base"
-                [isPercent]="true"
-                (focusOut)="saveValue($event, 'combatAttr', 'deg_c.base')"
-              ></app-edit-input>
-            </div>
-            <div class="substat-line">
-              <span class="substat-title">DÉG C boost ingame : </span>
-              <app-edit-input
-                [data]="combatAttr.deg_c.boost"
-                [dataType]="boostingame"
-                [isPercent]="true"
-                (focusOut)="saveValue($event, 'combatAttr', 'deg_c.boost')"
-              ></app-edit-input>
-            </div>
-          </div>
-        </div>
-        <hr />
-        <div class="sub-category">
-          <img class="stats-icons" src="assets/img/icons/effetCrit.png" />
-          <span class="stat-title">Effet crit P :</span><br />
-          <div class="substat">
-            <div class="substat-line">
-              <span class="substat-title">Effet crit P base : </span>
-              <app-edit-input
-                [data]="combatAttr.effet_crit.base"
-                [dataType]="base"
-                [isPercent]="true"
-                (focusOut)="saveValue($event, 'combatAttr', 'effet_crit.base')"
-              ></app-edit-input>
-            </div>
-            <div class="substat-line">
-              <span class="substat-title">Effet crit P boost ingame : </span>
-              <app-edit-input
-                [data]="combatAttr.effet_crit.boost"
-                [dataType]="boostingame"
-                [isPercent]="true"
-                (focusOut)="saveValue($event, 'combatAttr', 'effet_crit.boost')"
-              ></app-edit-input>
-            </div>
-          </div>
-        </div>
-        <hr />
-        <div class="sub-category">
-          <div class="substat-line single-stat">
-            <img class="stats-icons" src="assets/img/icons/penc.png" />
-            <span class="stat-title">Penetration C :</span>
-            <app-edit-input
-              [data]="combatAttr.penetration_c"
-              [dataType]="base"
-              (focusOut)="saveValue($event, 'combatAttr', 'penetration_c')"
-            ></app-edit-input>
-          </div>
-        </div>
-        <hr />
-        <div class="sub-category">
-          <div class="substat-line single-stat">
-            <img class="stats-icons" src="assets/img/icons/penp.png" />
-            <span class="stat-title">Penetration P :</span>
-            <app-edit-input
-              [data]="combatAttr.penetration_p"
-              [dataType]="base"
-              (focusOut)="saveValue($event, 'combatAttr', 'penetration_p')"
-            ></app-edit-input>
-          </div>
-        </div>
-      </div>
       <div class="block-level">
         <div class="skill-bloc">
           <h3>
@@ -272,84 +83,40 @@
         />
       </div>
     </div>
-
     <div class="attributs-block">
-      <h1 class="att-block-title">Attributs de combat adversaire</h1>
-      <div class="stats-block">
-        <div class="sub-category">
-          <div class="substat-line single-stat">
-            <img class="stats-icons" src="assets/img/icons/pCritRes.png" />
-            <span class="stat-title">P crit Res :</span>
-            <app-edit-input
-              [data]="combatAttrOpponent.p_crit_res"
-              [dataType]="base"
-              [isPercent]="true"
-              (focusOut)="saveValue($event, 'combatAttrOpponent', 'p_crit_res')"
-            ></app-edit-input>
-          </div>
-        </div>
-        <hr />
-        <div class="sub-category">
-          <div class="substat-line single-stat">
-            <img class="stats-icons" src="assets/img/icons/resDegP.png" />
-            <span class="stat-title">Res DÉG P :</span>
-            <app-edit-input
-              [data]="combatAttrOpponent.res_deg_p"
-              [dataType]="base"
-              [isPercent]="true"
-              (focusOut)="saveValue($event, 'combatAttrOpponent', 'res_deg_p')"
-            ></app-edit-input>
-          </div>
-        </div>
-        <hr />
-        <div class="sub-category">
-          <div class="substat-line single-stat">
-            <img class="stats-icons" src="assets/img/icons/resDegC.png" />
-            <span class="stat-title">Res DÉG C :</span>
-            <app-edit-input
-              [data]="combatAttrOpponent.rest_deg_c"
-              [dataType]="base"
-              [isPercent]="true"
-              (focusOut)="saveValue($event, 'combatAttrOpponent', 'rest_deg_c')"
-            ></app-edit-input>
-          </div>
-        </div>
-      </div>
-      <div class="youtube-block">
-        <youtube-player
-          [videoId]="tackerVideo"
-          [width]="470"
-          [height]="355"
-        ></youtube-player>
-      </div>
+      <app-youtube></app-youtube>
     </div>
   </div>
 
   <div class="block-level final-result-bloc">
-    <div class="sub-category">
-      <div class="substat-line single-stat">
-        <span class="stat-title">Dégâts C finaux :</span>
-        <span class="substat-value stat-final">{{ degatsFinauxCosmic }}</span>
+    <ng-container *ngIf="isPhysique">
+      <div class="sub-category">
+        <div class="substat-line single-stat">
+          <span class="stat-title">Dégâts P finaux sans Crit :</span>
+          <span class="substat-value stat-final">{{
+            degatsFinauxPhysiqueSansCrit
+          }}</span>
+        </div>
       </div>
-    </div>
-    <hr />
-    <div class="sub-category">
-      <div class="substat-line single-stat">
-        <span class="stat-title">Dégâts P finaux sans Crit :</span>
-        <span class="substat-value stat-final">{{
-          degatsFinauxPhysiqueSansCrit
-        }}</span>
+      <hr />
+      <div class="sub-category">
+        <div class="substat-line single-stat">
+          <span class="stat-title">Dégâts P finaux avec Crit :</span>
+          <span class="substat-value stat-final">{{
+            degatsFinauxPhysiqueAvecCrit
+          }}</span>
+        </div>
       </div>
-    </div>
-    <hr />
-    <div class="sub-category">
-      <div class="substat-line single-stat">
-        <span class="stat-title">Dégâts P finaux avec Crit :</span>
-        <span class="substat-value stat-final">{{
-          degatsFinauxPhysiqueAvecCrit
-        }}</span>
+    </ng-container>
+    <ng-container *ngIf="isCosmic">
+      <hr />
+      <div class="sub-category">
+        <div class="substat-line single-stat">
+          <span class="stat-title">Dégâts C finaux :</span>
+          <span class="substat-value stat-final">{{ degatsFinauxCosmic }}</span>
+        </div>
       </div>
-    </div>
+    </ng-container>
   </div>
   <app-footer></app-footer>
 </div>

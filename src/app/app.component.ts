@@ -13,6 +13,9 @@ export class AppComponent implements OnInit {
   characterLvl = 80;
   skill = 1;
 
+  isPhysique = true;
+  isCosmic = false;
+
   cosmoStats = {
     fellina: 0.5,
     chaineHephaistos: 0.4,
@@ -242,5 +245,74 @@ export class AppComponent implements OnInit {
     this.calculDegatsCosmiqueFinaux();
     this.calculDegatsPhysiqueSansCrit();
     this.calculDegatsPhysiqueAvecCrit();
+  }
+
+  refreshPhysique() {
+    this.calculDegatsPhysiqueSansCrit();
+    this.calculDegatsPhysiqueAvecCrit();
+  }
+
+  refreshCosmic() {
+    this.calculDegatsCosmiqueFinaux();
+  }
+
+  switchDegats(value) {
+    if (value) {
+      this.isCosmic = true;
+      this.isPhysique = !this.isCosmic;
+    } else {
+      this.isPhysique = true;
+      this.isCosmic = !this.isPhysique;
+    }
+  }
+
+  updateDegatsPhysique(value) {
+    if (value[0] == 'basicAttr') {
+      this.basicAttr.atq_p = value[1].atq_p;
+    }
+
+    if (value[0] == 'combatAttr') {
+      this.combatAttr.effet_crit = value[1].effet_crit;
+      this.combatAttr.penetration_p = value[1].penetration_p;
+    }
+
+    this.refreshPhysique();
+  }
+
+  updateDefensePhysique(value) {
+    if (value[0] == 'basicAttrOpponent') {
+      this.basicAttrOpponent.def_p = value[1].def_p;
+    }
+
+    if (value[0] == 'combatAttrOpponent') {
+      this.combatAttrOpponent.res_deg_p = value[1].res_deg_p;
+    }
+
+    this.refreshPhysique();
+  }
+
+  updateDegatsCosmic(value) {
+    if (value[0] == 'basicAttr') {
+      this.basicAttr.atq_c = value[1].atq_c;
+    }
+
+    if (value[0] == 'combatAttr') {
+      this.combatAttr.deg_c = value[1].deg_c;
+      this.combatAttr.penetration_c = value[1].penetration_c;
+    }
+
+    this.refreshCosmic();
+  }
+
+  updateDefenseCosmic(value) {
+    if (value[0] == 'basicAttrOpponent') {
+      this.basicAttrOpponent.def_c = value[1].def_c;
+    }
+
+    if (value[0] == 'combatAttrOpponent') {
+      this.combatAttrOpponent.rest_deg_c = value[1].rest_deg_c;
+    }
+
+    this.refreshCosmic();
   }
 }

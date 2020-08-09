@@ -1,0 +1,72 @@
+<div class="attributs-block">
+  <h1 class="att-block-title">Attributs basiques</h1>
+  <div class="stats-block">
+    <div class="sub-category">
+      <img class="stats-icons" src="assets/img/icons/atqc.png" />
+      <span class="stat-title">ATQ C :</span><br />
+      <div class="substat">
+        <div class="substat-line">
+          <span class="substat-title">Atq C base : </span>
+          <app-edit-input
+            [data]="basicAttr.atq_c.base"
+            [dataType]="base"
+            (focusOut)="saveValue($event, 'basicAttr', 'atq_c.base')"
+          ></app-edit-input>
+        </div>
+        <div class="substat-line">
+          <span class="substat-title">Atq C boost : </span>
+          <app-edit-input
+            [data]="basicAttr.atq_c.boost"
+            [dataType]="boost"
+            (focusOut)="saveValue($event, 'basicAttr', 'atq_c.boost')"
+          ></app-edit-input>
+        </div>
+        <div class="substat-line">
+          <span class="substat-title">Atq C boost ingame : </span>
+          <app-edit-input
+            [data]="basicAttr.atq_c.boost2"
+            [dataType]="boostingame"
+            (focusOut)="saveValue($event, 'basicAttr', 'atq_c.boost2')"
+          ></app-edit-input>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div class="sub-category">
+      <img class="stats-icons" src="assets/img/icons/degc.png" />
+      <span class="stat-title">DÉG C :</span><br />
+      <div class="substat">
+        <div class="substat-line">
+          <span class="substat-title">DÉG C base : </span>
+          <app-edit-input
+            [data]="combatAttr.deg_c.base"
+            [dataType]="base"
+            [isPercent]="true"
+            (focusOut)="saveValue($event, 'combatAttr', 'deg_c.base')"
+          ></app-edit-input>
+        </div>
+        <div class="substat-line">
+          <span class="substat-title">DÉG C boost ingame : </span>
+          <app-edit-input
+            [data]="combatAttr.deg_c.boost"
+            [dataType]="boostingame"
+            [isPercent]="true"
+            (focusOut)="saveValue($event, 'combatAttr', 'deg_c.boost')"
+          ></app-edit-input>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div class="sub-category">
+      <div class="substat-line single-stat">
+        <img class="stats-icons" src="assets/img/icons/penc.png" />
+        <span class="stat-title">Penetration C :</span>
+        <app-edit-input
+          [data]="combatAttr.penetration_c"
+          [dataType]="base"
+          (focusOut)="saveValue($event, 'combatAttr', 'penetration_c')"
+        ></app-edit-input>
+      </div>
+    </div>
+  </div>
+</div>

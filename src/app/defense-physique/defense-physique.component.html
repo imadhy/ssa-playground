@@ -1,0 +1,48 @@
+<div class="attributs-block">
+  <h1 class="att-block-title">Attributs basiques adversaire</h1>
+  <div class="stats-block">
+    <div class="sub-category">
+      <img class="stats-icons" src="assets/img/icons/defp.png" />
+      <span class="stat-title">Def P :</span><br />
+      <div class="substat">
+        <div class="substat-line">
+          <span class="substat-title">Def P base : </span>
+          <app-edit-input
+            [data]="basicAttrOpponent.def_p.base"
+            [dataType]="base"
+            (focusOut)="saveValue($event, 'basicAttrOpponent', 'def_p.base')"
+          ></app-edit-input>
+        </div>
+        <div class="substat-line">
+          <span class="substat-title">Def P boost : </span>
+          <app-edit-input
+            [data]="basicAttrOpponent.def_p.boost"
+            [dataType]="boost"
+            (focusOut)="saveValue($event, 'basicAttrOpponent', 'def_p.boost')"
+          ></app-edit-input>
+        </div>
+        <div class="substat-line">
+          <span class="substat-title">Def P boost ingame : </span>
+          <app-edit-input
+            [data]="basicAttrOpponent.def_p.boost2"
+            [dataType]="boostingame"
+            (focusOut)="saveValue($event, 'basicAttrOpponent', 'def_p.boost2')"
+          ></app-edit-input>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <div class="sub-category">
+      <div class="substat-line single-stat">
+        <img class="stats-icons" src="assets/img/icons/resDegP.png" />
+        <span class="stat-title">Res DÉG P :</span>
+        <app-edit-input
+          [data]="combatAttrOpponent.res_deg_p"
+          [dataType]="base"
+          [isPercent]="true"
+          (focusOut)="saveValue($event, 'combatAttrOpponent', 'res_deg_p')"
+        ></app-edit-input>
+      </div>
+    </div>
+  </div>
+</div>

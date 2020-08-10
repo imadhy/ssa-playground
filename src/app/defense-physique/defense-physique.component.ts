@@ -15,8 +15,8 @@ export class DefensePhysiqueComponent implements OnInit {
         this.basicAttrOpponent.def_p.base +
         this.basicAttrOpponent.def_p.boost +
         this.basicAttrOpponent.def_p.boost2,
-      base: 3000,
-      boost: 8000,
+      base: 300,
+      boost: 100,
       boost2: 0,
     },
   };

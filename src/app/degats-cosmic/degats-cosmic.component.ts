@@ -16,17 +16,17 @@ export class DegatsCosmicComponent implements OnInit {
         this.basicAttr.atq_c.boost2,
       base: 3000,
       boost: 8000,
-      boost2: 4000,
+      boost2: 0,
     },
   };
 
   combatAttr = {
     deg_c: {
       total: () => this.combatAttr.deg_c.base + this.combatAttr.deg_c.boost,
-      base: 25,
-      boost: 3,
+      base: 20,
+      boost: 0,
     },
-    penetration_c: 36,
+    penetration_c: 200,
   };
 
   base = 'base';

@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
         this.basicAttr.atq_c.boost2,
       base: 3000,
       boost: 8000,
-      boost2: 4000,
+      boost2: 0,
     },
     atq_p: {
       total: () =>
@@ -53,7 +53,7 @@ export class AppComponent implements OnInit {
         this.basicAttr.atq_p.boost2,
       base: 3000,
       boost: 8000,
-      boost2: 4000,
+      boost2: 0,
     },
   };
 
@@ -63,35 +63,35 @@ export class AppComponent implements OnInit {
         this.basicAttrOpponent.def_c.base +
         this.basicAttrOpponent.def_c.boost +
         this.basicAttrOpponent.def_c.boost2,
-      base: 3000,
-      boost: 8000,
-      boost2: 4000,
+      base: 300,
+      boost: 100,
+      boost2: 0,
     },
     def_p: {
       total: () =>
         this.basicAttrOpponent.def_p.base +
         this.basicAttrOpponent.def_p.boost +
         this.basicAttrOpponent.def_p.boost2,
-      base: 3000,
-      boost: 8000,
-      boost2: 4000,
+      base: 300,
+      boost: 100,
+      boost2: 0,
     },
   };
 
   combatAttr = {
     deg_c: {
       total: () => this.combatAttr.deg_c.base + this.combatAttr.deg_c.boost,
-      base: 25,
-      boost: 3,
+      base: 20,
+      boost: 0,
     },
     effet_crit: {
       total: () =>
         this.combatAttr.effet_crit.base + this.combatAttr.effet_crit.boost,
       base: 40,
-      boost: 3,
+      boost: 0,
     },
-    penetration_c: 36,
-    penetration_p: 36,
+    penetration_c: 200,
+    penetration_p: 200,
   };
 
   combatAttrOpponent = {

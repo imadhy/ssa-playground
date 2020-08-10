@@ -15,9 +15,9 @@ export class DefenseCosmicComponent implements OnInit {
         this.basicAttrOpponent.def_c.base +
         this.basicAttrOpponent.def_c.boost +
         this.basicAttrOpponent.def_c.boost2,
-      base: 3000,
-      boost: 8000,
-      boost2: 4000,
+      base: 300,
+      boost: 100,
+      boost2: 0,
     },
   };
 

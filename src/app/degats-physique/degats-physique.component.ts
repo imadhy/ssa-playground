@@ -25,9 +25,9 @@ export class DegatsPhysiqueComponent implements OnInit {
       total: () =>
         this.combatAttr.effet_crit.base + this.combatAttr.effet_crit.boost,
       base: 40,
-      boost: 3,
+      boost: 0,
     },
-    penetration_p: 36,
+    penetration_p: 200,
   };
 
   base = 'base';

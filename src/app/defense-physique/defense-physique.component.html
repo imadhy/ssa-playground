@@ -3,10 +3,12 @@
   <div class="stats-block">
     <div class="sub-category">
       <img class="stats-icons" src="assets/img/icons/defp.png" />
-      <span class="stat-title">Def P :</span><br />
+      <span class="stat-title">Def P : </span>
+      <span class="percent-reduction">{{ reductionDegats }} %</span>
+      <span class="title-reduction">Réduction dégâts</span><br />
       <div class="substat">
         <div class="substat-line">
-          <span class="substat-title">Def P base : </span>
+          <span class="substat-title">Def P base :</span>
           <app-edit-input
             [data]="basicAttrOpponent.def_p.base"
             [dataType]="base"

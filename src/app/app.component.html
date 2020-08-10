@@ -31,6 +31,7 @@
     <!-- Defense Physique -->
     <app-defense-physique
       *ngIf="isPhysique"
+      [reductionDegats]="reductionDegatsPhysique"
       (updateDefensePhysique)="updateDefensePhysique($event)"
     ></app-defense-physique>
 
@@ -43,6 +44,7 @@
     <!-- Defense Cosmic -->
     <app-defense-cosmic
       *ngIf="isCosmic"
+      [reductionDegats]="reductionDegatsCosmic"
       (updateDefenseCosmic)="updateDefenseCosmic($event)"
     ></app-defense-cosmic>
 

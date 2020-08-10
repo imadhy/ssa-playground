@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-defense-physique',
@@ -6,6 +6,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./defense-physique.component.scss'],
 })
 export class DefensePhysiqueComponent implements OnInit {
+  @Input() reductionDegats = 0;
   @Output() updateDefensePhysique: EventEmitter<any> = new EventEmitter<any>();
 
   basicAttrOpponent = {

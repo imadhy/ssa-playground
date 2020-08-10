@@ -23,6 +23,6 @@ export class EditInputComponent implements OnInit {
   ngOnInit() {}
 
   onFocusOut() {
-    this.focusOut.emit(this.data);
+    this.focusOut.emit(this.data ? this.data : 0);
   }
 }

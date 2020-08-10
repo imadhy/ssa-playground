@@ -33,6 +33,9 @@ export class AppComponent implements OnInit {
   degatsFinauxPhysiqueSansCrit = 0;
   degatsFinauxPhysiqueAvecCrit = 0;
 
+  reductionDegatsPhysique = 0;
+  reductionDegatsCosmic = 0;
+
   basicAttr = {
     atq_c: {
       total: () =>
@@ -111,6 +114,7 @@ export class AppComponent implements OnInit {
     if (selected) {
       this.renderer.removeClass(e.target, 'img-selected');
       this.selectedCosmo = 0;
+      this.selectedTemp = null;
     } else {
       this.renderer.addClass(e.target, 'img-selected');
       if (this.selectedTemp) {
@@ -177,6 +181,9 @@ export class AppComponent implements OnInit {
   setCharacterLvlValue(value) {
     this.characterLvl = value;
 
+    this.isPhysique
+      ? this.calculReductionDegatsPhysique()
+      : this.calculReductionDegatsCosmic();
     this.refreshData();
   }
 
@@ -184,12 +191,7 @@ export class AppComponent implements OnInit {
     const totalCatk = this.basicAttr.atq_c.total();
     const skill = this.skill / 100;
     const totalCdmg = 1 + this.combatAttr.deg_c.total() / 100;
-    const defFactorCosmic =
-      (400 + this.characterLvl * 10) /
-      (this.basicAttrOpponent.def_c.total() -
-        this.combatAttr.penetration_c +
-        400 +
-        this.characterLvl * 10);
+    const defFactorCosmic = this.defFactorCosmic();
     const finalFactor = 1 + this.selectedCosmo;
     const cResFactor = 1 / (1 + this.combatAttrOpponent.rest_deg_c / 100);
 
@@ -202,12 +204,7 @@ export class AppComponent implements OnInit {
   calculDegatsPhysiqueSansCrit() {
     const totalCatk = this.basicAttr.atq_p.total();
     const skill = this.skill / 100;
-    const defFactorPhysique =
-      (400 + this.characterLvl * 10) /
-      (this.basicAttrOpponent.def_p.total() -
-        this.combatAttr.penetration_p +
-        400 +
-        this.characterLvl * 10);
+    const defFactorPhysique = this.defFactorPhysique();
     const finalFactor = 1 + this.selectedCosmo;
     const pResFactor = 1 / (1 + this.combatAttrOpponent.res_deg_p / 100);
 
@@ -221,12 +218,7 @@ export class AppComponent implements OnInit {
     const totalCatk = this.basicAttr.atq_p.total();
     const skill = this.skill / 100;
     const effetCrit = 1 + this.combatAttr.effet_crit.total() / 100;
-    const defFactorPhysique =
-      (400 + this.characterLvl * 10) /
-      (this.basicAttrOpponent.def_p.total() -
-        this.combatAttr.penetration_p +
-        400 +
-        this.characterLvl * 10);
+    const defFactorPhysique = this.defFactorPhysique();
     const finalFactor = 1 + this.selectedCosmo;
     const pResFactor = 1 / (1 + this.combatAttrOpponent.res_deg_p / 100);
 
@@ -239,6 +231,36 @@ export class AppComponent implements OnInit {
         pResFactor
     );
     console.log(this.degatsFinauxPhysiqueAvecCrit);
+  }
+
+  defFactorPhysique() {
+    return (
+      (400 + this.characterLvl * 10) /
+      (this.basicAttrOpponent.def_p.total() -
+        this.combatAttr.penetration_p +
+        400 +
+        this.characterLvl * 10)
+    );
+  }
+
+  defFactorCosmic() {
+    return (
+      (400 + this.characterLvl * 10) /
+      (this.basicAttrOpponent.def_c.total() -
+        this.combatAttr.penetration_c +
+        400 +
+        this.characterLvl * 10)
+    );
+  }
+
+  calculReductionDegatsPhysique() {
+    this.reductionDegatsPhysique = Math.round(
+      100 - this.defFactorPhysique() * 100
+    );
+  }
+
+  calculReductionDegatsCosmic() {
+    this.reductionDegatsCosmic = Math.round(100 - this.defFactorCosmic() * 100);
   }
 
   refreshData() {
@@ -274,6 +296,8 @@ export class AppComponent implements OnInit {
     if (value[0] == 'combatAttr') {
       this.combatAttr.effet_crit = value[1].effet_crit;
       this.combatAttr.penetration_p = value[1].penetration_p;
+
+      this.calculReductionDegatsPhysique();
     }
 
     this.refreshPhysique();
@@ -288,6 +312,7 @@ export class AppComponent implements OnInit {
       this.combatAttrOpponent.res_deg_p = value[1].res_deg_p;
     }
 
+    this.calculReductionDegatsPhysique();
     this.refreshPhysique();
   }
 
@@ -299,6 +324,8 @@ export class AppComponent implements OnInit {
     if (value[0] == 'combatAttr') {
       this.combatAttr.deg_c = value[1].deg_c;
       this.combatAttr.penetration_c = value[1].penetration_c;
+
+      this.calculReductionDegatsCosmic();
     }
 
     this.refreshCosmic();
@@ -313,6 +340,7 @@ export class AppComponent implements OnInit {
       this.combatAttrOpponent.rest_deg_c = value[1].rest_deg_c;
     }
 
+    this.calculReductionDegatsCosmic();
     this.refreshCosmic();
   }
 }

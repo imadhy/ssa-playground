@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 
 @Component({
   selector: 'app-defense-cosmic',
@@ -6,6 +6,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./defense-cosmic.component.scss'],
 })
 export class DefenseCosmicComponent implements OnInit {
+  @Input() reductionDegats = 0;
   @Output() updateDefenseCosmic: EventEmitter<any> = new EventEmitter<any>();
 
   basicAttrOpponent = {

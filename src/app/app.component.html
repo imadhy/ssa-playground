@@ -84,6 +84,20 @@
           src="assets/img/serpant__deux_cornes.png"
         />
       </div>
+
+      <div class="block-level">
+        <div class="skill-bloc">
+          <h3>
+            Dégâts finaux :
+            <app-edit-input
+              [data]="degatFinaux"
+              [dataType]="final"
+              [isPercent]="true"
+              (focusOut)="setDegatFinaux($event)"
+            ></app-edit-input>
+          </h3>
+        </div>
+      </div>
     </div>
     <div class="attributs-block">
       <app-youtube></app-youtube>

@@ -12,6 +12,7 @@ export class AppComponent implements OnInit {
   selectedTemp;
   characterLvl = 80;
   skill = 1;
+  degatFinaux = 1;
 
   isPhysique = true;
   isCosmic = false;
@@ -174,7 +175,11 @@ export class AppComponent implements OnInit {
 
   setSkillValue(value) {
     this.skill = value;
+    this.refreshData();
+  }
 
+  setDegatFinaux(value) {
+    this.degatFinaux = value;
     this.refreshData();
   }
 
@@ -192,7 +197,7 @@ export class AppComponent implements OnInit {
     const skill = this.skill / 100;
     const totalCdmg = 1 + this.combatAttr.deg_c.total() / 100;
     const defFactorCosmic = this.defFactorCosmic();
-    const finalFactor = 1 + this.selectedCosmo;
+    const finalFactor = 1 + this.selectedCosmo + this.degatFinaux / 100;
     const cResFactor = 1 / (1 + this.combatAttrOpponent.rest_deg_c / 100);
 
     this.degatsFinauxCosmic = Math.round(
@@ -205,7 +210,7 @@ export class AppComponent implements OnInit {
     const totalCatk = this.basicAttr.atq_p.total();
     const skill = this.skill / 100;
     const defFactorPhysique = this.defFactorPhysique();
-    const finalFactor = 1 + this.selectedCosmo;
+    const finalFactor = 1 + this.selectedCosmo + this.degatFinaux / 100;
     const pResFactor = 1 / (1 + this.combatAttrOpponent.res_deg_p / 100);
 
     this.degatsFinauxPhysiqueSansCrit = Math.round(
@@ -219,7 +224,7 @@ export class AppComponent implements OnInit {
     const skill = this.skill / 100;
     const effetCrit = 1 + this.combatAttr.effet_crit.total() / 100;
     const defFactorPhysique = this.defFactorPhysique();
-    const finalFactor = 1 + this.selectedCosmo;
+    const finalFactor = 1 + this.selectedCosmo + this.degatFinaux / 100;
     const pResFactor = 1 / (1 + this.combatAttrOpponent.res_deg_p / 100);
 
     this.degatsFinauxPhysiqueAvecCrit = Math.round(
@@ -264,9 +269,12 @@ export class AppComponent implements OnInit {
   }
 
   refreshData() {
-    this.calculDegatsCosmiqueFinaux();
-    this.calculDegatsPhysiqueSansCrit();
-    this.calculDegatsPhysiqueAvecCrit();
+    if (this.isCosmic) {
+      this.calculDegatsCosmiqueFinaux();
+    } else if (this.isPhysique) {
+      this.calculDegatsPhysiqueSansCrit();
+      this.calculDegatsPhysiqueAvecCrit();
+    }
   }
 
   refreshPhysique() {

@@ -1,4 +1,4 @@
-<div class="container h-100">
+<div class="container">
   <h1 class="title">{{ title }}</h1>
   <div class="block-level">
     <h2>
@@ -98,13 +98,46 @@
           </h3>
         </div>
       </div>
+
+      <div class="block-level">
+        <ng-container *ngIf="isPhysique">
+          <div class="sub-category">
+            <div class="substat-line single-stat">
+              <span class="stat-title">Dégâts P finaux sans Crit :</span>
+              <span class="substat-value stat-final">{{
+                degatsFinauxPhysiqueSansCrit
+              }}</span>
+            </div>
+          </div>
+          <hr />
+          <div class="sub-category">
+            <div class="substat-line single-stat">
+              <span class="stat-title">Dégâts P finaux avec Crit :</span>
+              <span class="substat-value stat-final">{{
+                degatsFinauxPhysiqueAvecCrit
+              }}</span>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="isCosmic">
+          <hr />
+          <div class="sub-category">
+            <div class="substat-line single-stat">
+              <span class="stat-title">Dégâts C finaux :</span>
+              <span class="substat-value stat-final">{{
+                degatsFinauxCosmic
+              }}</span>
+            </div>
+          </div>
+        </ng-container>
+      </div>
     </div>
     <div class="attributs-block">
       <app-youtube></app-youtube>
     </div>
   </div>
 
-  <div class="block-level final-result-bloc">
+  <!-- <div class="block-level final-result-bloc">
     <ng-container *ngIf="isPhysique">
       <div class="sub-category">
         <div class="substat-line single-stat">
@@ -133,6 +166,6 @@
         </div>
       </div>
     </ng-container>
-  </div>
+  </div> -->
   <app-footer></app-footer>
 </div>
